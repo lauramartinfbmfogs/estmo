@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Line Drawing Example</title>
+</head>
+<body>
+<canvas id="myCanvas" width="400" height="400" style="border:1px solid #000000;"></canvas>
+
+<script>
+    // Get the canvas element and its context
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Initial current point
+    let currentPoint = { x: 50, y: 50 };
+
+    // Function to add a line segment and update the current point
+    function addLineSegment(endPoint) {
+        ctx.beginPath();
+        ctx.moveTo(currentPoint.x, currentPoint.y); // Move to the current point
+        ctx.lineTo(endPoint.x, endPoint.y);         // Draw line to the new point
+        ctx.stroke();                              // Render the line
+        
+        // Update the current point
+        currentPoint = endPoint;
+    }
+
+    // Example usage:
+    addLineSegment({ x: 150, y: 150 });
+    addLineSegment({ x: 200, y: 100 });
+    addLineSegment({ x: 250, y: 200 });
+
+    // If you need to reset the current point to null or some other value:
+    function resetCurrentPoint() {
+        currentPoint = null; // Or some default value if necessary
+    }
+
+    // Example of resetting the current point
+    resetCurrentPoint();
+    console.log("Current point after reset:", currentPoint); // Should log: null
+</script>
+</body>
+</html>
