@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results</title>
+    <style>
+        .no-results {
+            font-size: 16px;
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="searchInput" placeholder="Search...">
+    <button onclick="search()">Search</button>
+    <div id="results"></div>
+
+    <script>
+        const data = ["item1", "item2", "item3"]; // Example data set
+
+        function search() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const resultDiv = document.getElementById('results');
+            resultDiv.innerHTML = '';
+
+            const filteredData = data.filter(item => item.toLowerCase().includes(query));
+
+            if (filteredData.length === 0) {
+                resultDiv.innerHTML = '<p class="no-results">No items match your search.</p>';
+            } else {
+                filteredData.forEach(item => {
+                    const p = document.createElement('p');
+                    p.textContent = item;
+                    resultDiv.appendChild(p);
+                });
+            }
+        }
+    </script>
+</body>
+</html>
